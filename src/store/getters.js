@@ -10,9 +10,19 @@ export const dogs = (state) => {
     if(pet.species == "Dog") return pet
   })
 };
+
+export const dog = (state, getters) => (id) => {
+  return getters.dogs[id]
+}
+
+export const cat = (state, getters) => (id) => {
+  return getters.cats[id]
+}
+
 export const allAnimals = (state) => {
   return state.pets
 }
+
 export const countAnimals = (state) => {
   return state.pets.length
 };
@@ -21,8 +31,7 @@ export const getSpecies = (state) => {
     return pet.species
   })
 }
-export const pet = (state, rootState) => {
-  // return state.pets[rootState.route.id]
-  return state.pets.$route.params.id
 
+export const pet = (state, getters) => (id, species) => {
+  return getters[species](id)
 }

@@ -29,7 +29,10 @@
   name: 'animal',
   computed: {
     getAnimal(){
-      return this.$store.getters.pet
+      if(this.$route.name == "SpecifiedCat")
+       return this.$store.getters.pet(this.$route.params.id, "cat")
+      if(this.$route.name == "SpecifiedDog")
+        return this.$store.getters.pet(this.$route.params.id, "dog")
     }
   }
   }
